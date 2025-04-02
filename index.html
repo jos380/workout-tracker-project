@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="workoutApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout Tracker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body ng-controller="WorkoutController">
+
+<div class="container">
+  <h1 class="text-center mt-5">Workout Tracker</h1>
+
+  <div class="row">
+    <div class="col-md-4" ng-repeat="workout in workouts">
+      <div class="card">
+        <img ng-src="{{workout.media}}" class="card-img-top" alt="Workout Image">
+        <div class="card-body">
+          <h5 class="card-title">{{workout.exercise}}</h5>
+          <p class="card-text">Duration: {{workout.duration}} mins</p>
+          <p class="card-text">Calories Burned: {{workout.caloriesBurned}}</p>
+          <a href="/workouts/edit/{{workout._id}}" class="btn btn-primary">Edit</a>
+          <a href="/workouts/delete/{{workout._id}}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form ng-submit="addWorkout()">
+    <div class="form-group">
+      <input type="text" ng-model="newWorkout.exercise" class="form-control" placeholder="Exercise Name" required>
+    </div>
+    <div class="form-group">
+      <input type="number" ng-model="newWorkout.duration" class="form-control" placeholder="Duration (mins)" required>
+    </div>
+    <div class="form-group">
+      <input type="number" ng-model="newWorkout.caloriesBurned" class="form-control" placeholder="Calories Burned" required>
+    </div>
+    <div class="form-group">
+      <input type="file" ng-model="newWorkout.media" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Add Workout</button>
+  </form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/workoutController.js"></script>
+
+</body>
+</html>
