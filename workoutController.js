@@ -1,9 +1,10 @@
 
-angular.module('workoutApp', [])
+angular.module('workoutApp')
   .controller('WorkoutController', ['$scope', '$http', function($scope, $http) {
-    $http.get('/workouts').then(response => {
-      $scope.workouts = response.data;
-    });
+    $http.get('/workouts')
+      .then(response => {
+        $scope.workouts = response.data;
+      });
 
     $scope.addWorkout = function() {
       const formData = new FormData();
